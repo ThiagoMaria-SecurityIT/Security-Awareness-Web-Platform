@@ -1,23 +1,31 @@
 # Security Awareness Web Platform
 
+<p align="center">
+  <img src="https://img.shields.io/badge/status-under%20development-yellow" alt="Status: Under Development"/>
+  <img src="https://img.shields.io/badge/python-3.10%2B-blue" alt="Python Version"/>
+  <img src="https://img.shields.io/badge/framework-Flask-black" alt="Framework: Flask"/>
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="License: MIT"/>
+</p>
+
 A Python Flask web application for security awareness training that uses LibreOffice to convert PowerPoint presentations into course slides and SQLAlchemy for database management.
 
-This platform is designed to help organizations manage their annual security awareness training programs, a common requirement for compliance with frameworks like **ISO 27001, NIST, SOC 2, and PCI-DSS**.  
+This platform is designed to help organizations manage their annual security awareness training programs, a common requirement for compliance with frameworks like **ISO 27001, NIST, SOC 2, and PCI-DSS**.
 
-<img width="1913" height="903" alt="image" src="https://github.com/user-attachments/assets/9482afd1-d6b7-426b-96fe-8b12468cafc5" />  
-
+<p align="center">
+  <img width="100%" alt="Main dashboard of the Security Awareness Web Platform" src="https://github.com/user-attachments/assets/9482afd1-d6b7-426b-96fe-8b12468cafc5" />
+</p>
 
 ## Table of Contents
 
 1.  [The Problem This Solves](#the-problem-this-solves)
 2.  [Core Features](#core-features)
-3.  [How to Run This Project](#how-to-run-this-project)
-4.  [Troubleshooting](#troubleshooting)
-5.  [Future Implementations](#future-implementations)
-6.  [AI Transparency](#ai-transparency)
-7.  [About Me & Contact](#about-me--contact)
-8.  [Ways to Contribute](#ways-to-contribute)
-9.  [Images of the app](#images-of-the-app)
+3.  [Development Roadmap](#development-roadmap)
+4.  [How to Run This Project](#how-to-run-this-project)
+5.  [Troubleshooting](#troubleshooting)
+6.  [Application Screenshots](#application-screenshots)
+7.  [AI Transparency](#ai-transparency)
+8.  [About Me & Contact](#about-me--contact)
+9.  [Ways to Contribute](#ways-to-contribute)
 
 ## The Problem This Solves
 
@@ -34,6 +42,15 @@ Many organizations struggle with efficiently managing and tracking their mandato
 *   **Automated Course Conversion:** Upload a `.pptx` file, and it becomes an interactive web course.
 *   **Course Management Hub:** A central dashboard for trainers to upload, view, list, and delete courses.
 *   **User & Enrollment Database:** Tracks all users and their course enrollment history.
+
+## Development Roadmap
+
+This project is currently under active development. Key features like the interactive course viewer and course completion logic are still being implemented.
+
+The goal is to have these features fully functional by **December 2025**. The implementation will be based on the logic from the previous Tkinter version of this application (which already has a working presentation preview) and will be expanded upon as development time allows.
+
+You can find the original Tkinter version here for reference:
+[https://github.com/ThiagoMaria-SecurityIT/Security-Awareness-APP](https://github.com/ThiagoMaria-SecurityIT/Security-Awareness-APP)
 
 ## How to Run This Project
 
@@ -77,13 +94,15 @@ If the application crashes or you get an error because your session is stuck, yo
 
 This will clear your session and redirect you to the login page.
 
-## Future Implementations
+## Application Screenshots
 
-The roadmap for this project includes several exciting features:
-
-*   **Certificate Generation:** Automatically generate a PDF certificate upon course completion.
-*   **Bulk User Management:** Import and export user lists from a `.csv` file.
-*   **Advanced Reporting:** Detailed dashboards for compliance and audit reports.
+| Manage Courses | Assign Course |
+| :---: | :---: |
+| <img width="100%" alt="Assign Course page" src="https://github.com/user-attachments/assets/6583d02a-3013-4c82-868d-8d97cf81bc60" />  | <img width="100%" alt="Team Progress page" src="https://github.com/user-attachments/assets/0c50d2ea-3334-4d14-8d9d-a3e8b6dd8c90" /> |
+| **Team Progress** | **User Management** |
+|  <img width="100%" alt="User Management page" src="https://github.com/user-attachments/assets/f7eb7dbc-7f88-4438-b79f-5e2fbf6b3c2b" /> | <img width="100%" alt="Login page" src="https://github.com/user-attachments/assets/7dc90b89-383d-47cf-ba7c-d2997733e703" />|
+| **Login Page** |  **Dashboard** |
+| <img width="1914" height="827" alt="image" src="https://github.com/user-attachments/assets/0fdfdcec-e0e5-4054-a718-d4e489149307" /> | <img width="100%" alt="Manage Courses page" src="https://github.com/user-attachments/assets/7c0c2a65-923c-4940-b40a-44c4172ff192" /> |
 
 ## AI Transparency
 
@@ -106,17 +125,3 @@ Let's Connect:
 ## Ways to Contribute
 Want to see more upgrades? Help me keep it updated!    
 [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-red)](https://github.com/sponsors/ThiagoMaria-SecurityIT)
-
-## Images of the app  
-
-<img width="1910" height="905" alt="image" src="https://github.com/user-attachments/assets/7c0c2a65-923c-4940-b40a-44c4172ff192" />  
-<img width="1914" height="905" alt="image" src="https://github.com/user-attachments/assets/6583d02a-3013-4c82-868d-8d97cf81bc60" />  
-<img width="1914" height="910" alt="image" src="https://github.com/user-attachments/assets/0c50d2ea-3334-4d14-8d9d-a3e8b6dd8c90" />  
-<img width="1906" height="895" alt="image" src="https://github.com/user-attachments/assets/f7eb7dbc-7f88-4438-b79f-5e2fbf6b3c2b" />  
-<img width="1919" height="912" alt="image" src="https://github.com/user-attachments/assets/7dc90b89-383d-47cf-ba7c-d2997733e703" />  
-
-
-
-
-
-
