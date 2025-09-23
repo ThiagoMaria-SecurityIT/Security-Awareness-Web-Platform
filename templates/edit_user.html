@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>{{ form_title }}</h2>
+    <hr>
+
+    <div class="card">
+        <div class="card-body">
+            <!-- If editing, the form posts back to the same URL. If creating, it also posts here. -->
+            <form method="POST" action="">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="name">Full Name</label>
+                        <input type="text" class="form-control" name="name" value="{{ user.name if user else '' }}" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" value="{{ user.email if user else '' }}" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="{{ 'Leave blank to keep current password' if user else 'Required for new user' }}">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="role_id">Role</label>
+                        <select name="role_id" class="form-control" required>
+                            {% for role in roles %}
+                                <option value="{{ role.id }}" {% if user and user.role_id == role.id %}selected{% endif %}>
+                                    {{ role.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / / -->
+                    <!-- / / / / / / / / START OF CORRECTED SECTION / / / / / / / -->
+                    <!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / / -->
+                    <div class="form-group col-md-4">
+                        <label for="superior_id">Direct Superior (Optional)</label>
+                        <select name="superior_id" class="form-control">
+                            <option value="">-- None --</option>
+                            <!-- This now correctly loops over the 'superiors' list passed from app.py -->
+                            {% for superior_user in superiors %}
+                                <!-- Don't allow a user to be their own superior -->
+                                {% if not user or superior_user.id != user.id %}
+                                <option value="{{ superior_user.id }}" {% if user and user.superior_id == superior_user.id %}selected{% endif %}>
+                                    {{ superior_user.name }} ({{ superior_user.role.name }})
+                                </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / -->
+                    <!-- / / / / / / / / / END OF CORRECTED SECTION / / / / / / / -->
+                    <!-- / / / / / / / / / / / / / / / / / / / / / / / / / / / -->
+                </div>
+                <button type="submit" class="btn btn-success">Save Changes</button>
+                <a href="{{ url_for('manage_users') }}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

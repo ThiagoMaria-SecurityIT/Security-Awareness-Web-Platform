@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Team Progress Dashboard</h2>
+    <p class="text-muted">Select a subordinate to view their course progress.</p>
+    <hr>
+
+    <!-- Selection Form -->
+    <div class="card mb-4">
+        <div class="card-header">
+            Select User
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('team_progress') }}">
+                <div class="form-row align-items-end">
+                    <div class="form-group col-md-8">
+                        <label for="user_id">Select Subordinate</label>
+                        <select name="user_id" class="form-control">
+                            <option value="">-- Please select a user --</option>
+                            {% for sub in subordinates %}
+                                <option value="{{ sub.id }}">{{ sub.name }} ({{ sub.email }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <button type="submit" class="btn btn-primary btn-block">View Progress</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Results Area -->
+    {% if enrollments is not none %}
+    <div class="card">
+        <div class="card-header">
+            <h4>Progress for: {{ selected_user_name }}</h4>
+        </div>
+        <div class="card-body">
+            {% if enrollments %}
+            <table class="table table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Status</th>
+                        <th>Assigned On</th>
+                        <th>Completed On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for enrollment in enrollments %}
+                    <tr>
+                        <td>{{ enrollment.course.name }}</td>
+                        <td>
+                            {% if enrollment.status == 'Completed' %}
+                                <span class="badge badge-success">{{ enrollment.status }}</span>
+                            {% elif enrollment.status == 'In Progress' %}
+                                <span class="badge badge-warning">{{ enrollment.status }}</span>
+                            {% else %}
+                                <span class="badge badge-secondary">{{ enrollment.status }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ enrollment.assigned_date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ enrollment.completion_date.strftime('%Y-%m-%d') if enrollment.completion_date else 'N/A' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="text-center">This user is not enrolled in any courses.</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}
