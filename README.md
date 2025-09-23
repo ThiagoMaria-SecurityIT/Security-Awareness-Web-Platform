@@ -11,6 +11,10 @@ A Python Flask web application for security awareness training that uses LibreOf
 
 This platform is designed to help organizations manage their annual security awareness training programs, a common requirement for compliance with frameworks like **ISO 27001, NIST, SOC 2, and PCI-DSS**.
 
+> [!Tip]
+> To see how this project started, check out the original desktop version built with Tkinter!  
+> You can find it here: **[Security-Awareness-APP](https://github.com/ThiagoMaria-SecurityIT/Security-Awareness-APP )**  
+
 <p align="center">
   <img width="100%" alt="Main dashboard of the Security Awareness Web Platform" src="https://github.com/user-attachments/assets/9482afd1-d6b7-426b-96fe-8b12468cafc5" />
 </p>
