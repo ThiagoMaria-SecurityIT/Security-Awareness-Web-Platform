@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Your Assigned Courses</h2>
+    <hr>
+    {% if enrollments %}
+        {% for enrollment in enrollments %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ enrollment.course.name }}</h5>
+                    <p class="card-text">Status: <strong>{{ enrollment.status }}</strong></p>
+                    {% if enrollment.expiration_date %}
+                        <p class="card-text"><small class="text-muted">Due by: {{ enrollment.expiration_date.strftime('%Y-%m-%d') }}</small></p>
+                    {% endif %}
+                    <a href="#" class="btn btn-primary">Start Course</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-info">
+            No courses have been assigned to you yet.
+        </div>
+    {% endif %}
+{% endblock %}

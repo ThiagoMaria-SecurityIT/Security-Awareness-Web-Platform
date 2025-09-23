@@ -1,0 +1,163 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Team Dashboard</h2>
+    <p class="text-muted">An overview of your team's training progress.</p>
+    <hr>
+
+    <!-- Stats Cards (No changes here) -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-header">Total Team Members</div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ stats.total_users }}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">Enrollments Completed</div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ stats.completed }}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-header">Enrollments In Progress</div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ stats.in_progress }}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-secondary mb-3">
+                <div class="card-header">Enrollments Not Started</div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ stats.not_started }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="row mt-4">
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-header">Overall Status</div>
+                <div class="card-body">
+                    <!-- MODIFICATION 1: Added a div to constrain the height -->
+                    <div style="max-height: 250px;">
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-header">Completions by Role</div>
+                <div class="card-body">
+                    <!-- MODIFICATION 1: Added a div to constrain the height -->
+                    <div style="max-height: 250px;">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Team Member List (No changes here) -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <h4>Team Member Details</h4>
+        </div>
+        <div class="card-body">
+            {% if team_members %}
+            <table class="table table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Courses Completed</th>
+                        <th>Courses In Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for member in team_members %}
+                    <tr>
+                        <td>{{ member.name }}</td>
+                        <td>{{ member.email }}</td>
+                        <td><span class="badge badge-info">{{ member.role.name }}</span></td>
+                        <td>{{ member.enrollments.filter_by(status='Completed').count() }}</td>
+                        <td>{{ member.enrollments.filter_by(status='In Progress').count() }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="text-center text-muted">You have no subordinates to display.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Include Chart.js library and render charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function( ) {
+            // MODIFICATION 2: The chart rendering code now runs always.
+            // We get the data from Flask, or default to empty arrays if it's not there.
+            const chartData = {{ chart_data | tojson }};
+            
+            const pieLabels = chartData?.pie?.labels || ['Completed', 'In Progress', 'Not Started'];
+            const pieValues = chartData?.pie?.values || [0, 0, 0];
+
+            const barLabels = chartData?.bar?.labels || [];
+            const barValues = chartData?.bar?.values || [];
+
+            // --- Pie Chart ---
+            const pieCtx = document.getElementById('pieChart').getContext('2d');
+            new Chart(pieCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: pieLabels,
+                    datasets: [{
+                        data: pieValues,
+                        backgroundColor: [
+                            'rgba(40, 167, 69, 0.8)',  // Success (Green)
+                            'rgba(255, 193, 7, 0.8)',   // Warning (Yellow)
+                            'rgba(108, 117, 125, 0.8)' // Secondary (Grey)
+                        ],
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, // Important for custom height
+                    plugins: { legend: { position: 'top' } } 
+                }
+            });
+
+            // --- Bar Chart ---
+            const barCtx = document.getElementById('barChart').getContext('2d');
+            new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: barLabels,
+                    datasets: [{
+                        label: 'Total Completions',
+                        data: barValues,
+                        backgroundColor: 'rgba(0, 123, 255, 0.8)', // Primary (Blue)
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, // Important for custom height
+                    scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        });
+    </script>
+{% endblock %}
