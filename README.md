@@ -2,7 +2,10 @@
 
 A Python Flask web application for security awareness training that uses LibreOffice to convert PowerPoint presentations into course slides and SQLAlchemy for database management.
 
-This platform is designed to help organizations manage their annual security awareness training programs, a common requirement for compliance with frameworks like **ISO 27001, NIST, SOC 2, and PCI-DSS**.
+This platform is designed to help organizations manage their annual security awareness training programs, a common requirement for compliance with frameworks like **ISO 27001, NIST, SOC 2, and PCI-DSS**.  
+
+<img width="1913" height="903" alt="image" src="https://github.com/user-attachments/assets/9482afd1-d6b7-426b-96fe-8b12468cafc5" />  
+
 
 ## Table of Contents
 
@@ -14,6 +17,7 @@ This platform is designed to help organizations manage their annual security awa
 6.  [AI Transparency](#ai-transparency)
 7.  [About Me & Contact](#about-me--contact)
 8.  [Ways to Contribute](#ways-to-contribute)
+9.  [Images of the app](#images-of-the-app)
 
 ## The Problem This Solves
 
@@ -102,3 +106,17 @@ Let's Connect:
 ## Ways to Contribute
 Want to see more upgrades? Help me keep it updated!    
 [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-red)](https://github.com/sponsors/ThiagoMaria-SecurityIT)
+
+## Images of the app  
+
+<img width="1910" height="905" alt="image" src="https://github.com/user-attachments/assets/7c0c2a65-923c-4940-b40a-44c4172ff192" />  
+<img width="1914" height="905" alt="image" src="https://github.com/user-attachments/assets/6583d02a-3013-4c82-868d-8d97cf81bc60" />  
+<img width="1914" height="910" alt="image" src="https://github.com/user-attachments/assets/0c50d2ea-3334-4d14-8d9d-a3e8b6dd8c90" />  
+<img width="1906" height="895" alt="image" src="https://github.com/user-attachments/assets/f7eb7dbc-7f88-4438-b79f-5e2fbf6b3c2b" />  
+<img width="1919" height="912" alt="image" src="https://github.com/user-attachments/assets/7dc90b89-383d-47cf-ba7c-d2997733e703" />  
+
+
+
+
+
+
