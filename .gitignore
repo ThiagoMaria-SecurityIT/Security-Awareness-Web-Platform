@@ -16,3 +16,5 @@ uploads/
 # IDE / Editor specific files
 .idea/
 .vscode/
+
+.env
